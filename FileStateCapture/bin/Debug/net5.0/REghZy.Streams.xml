@@ -1,0 +1,839 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>REghZy.Streams</name>
+    </assembly>
+    <members>
+        <member name="T:REghZy.Streams.BlockingStream">
+            <summary>
+            A stream wrapper that supports blocking reading (waits until data is available)
+            <para>
+            This stream can be written to and read from,
+            </para>
+            </summary>
+        </member>
+        <member name="P:REghZy.Streams.BlockingStream.Stream">
+            <summary>
+            The underlying stream of this blocking stream
+            </summary>
+        </member>
+        <member name="F:REghZy.Streams.BlockingStream.read1">
+            <summary>
+            A small array for reading a single byte. Saves creating
+            an array each time the method is invoked
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.BlockingStream.#ctor(System.IO.Stream)">
+            <summary>
+            Creates a new instance of the blocking stream, using the given stream as the underlying stream, that will be used to read from
+            </summary>
+            <param name="stream"></param>
+            <exception cref="T:System.NullReferenceException"></exception>
+        </member>
+        <member name="M:REghZy.Streams.BlockingStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads from the stream, blocking until it reads the given count
+            </summary>
+            <param name="buffer">The buffer to read into</param>
+            <param name="offset">The offset to start reading into the buffer</param>
+            <param name="count">The exact number of bytes to read</param>
+            <returns>Exactly the specified number of bytes</returns>
+        </member>
+        <member name="M:REghZy.Streams.BlockingStream.ReadByte">
+            <summary>
+            Blocks until a single byte can be read
+            </summary>
+            <returns>A single byte</returns>
+        </member>
+        <member name="T:REghZy.Streams.DataInputStream">
+            <summary>
+            A class for reading primitive objects from a stream
+            <para>
+            The bytes will be read in the big-endianness format, apart from reading pointer values, which will be
+            read in your processor architecture's format, which for modern hardware is little-endianness
+            </para>
+            <para>
+            Most method have repeated code for speed reasons...
+            </para>
+            </summary>
+        </member>
+        <member name="F:REghZy.Streams.DataInputStream.buffer8">
+            <summary>
+            A small buffer for reading into
+            </summary>
+        </member>
+        <member name="F:REghZy.Streams.DataInputStream.cbuffer1">
+            <summary>
+            A temp buffer used for writing chars with specific encodings
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.DataInputStream.#ctor">
+            <summary>
+            Creates a data input stream, with no underlying stream (it can be set later on)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.DataInputStream.#ctor(System.IO.Stream)">
+            <summary>
+            Creates a data input stream, using the given underlying stream
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.DataInputStream.#ctor(System.IO.Stream,System.IO.SeekOrigin,System.Int64)">
+            <summary>
+            Creates a new data input stream, using the given underlying stream, seeking it at the given origin, optionally at the given offset (0 by default)
+            </summary>
+        </member>
+        <member name="T:REghZy.Streams.DataInputStreamLE">
+            <summary>
+            A class for reading primitive objects from a stream
+            <para>
+            The bytes will be read in the big-endianness format, apart from reading pointer values, which will be
+            read in your processor architecture's format, which for modern hardware is little-endianness
+            </para>
+            <para>
+            Most method have repeated code for speed reasons...
+            </para>
+            </summary>
+        </member>
+        <member name="F:REghZy.Streams.DataInputStreamLE.buffer8">
+            <summary>
+            A small buffer for reading into
+            </summary>
+        </member>
+        <member name="F:REghZy.Streams.DataInputStreamLE.cbuffer1">
+            <summary>
+            A temp buffer used for writing chars with specific encodings
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.DataInputStreamLE.#ctor">
+            <summary>
+            Creates a data input stream, with no underlying stream (it can be set later on)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.DataInputStreamLE.#ctor(System.IO.Stream)">
+            <summary>
+            Creates a data input stream, using the given underlying stream
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.DataInputStreamLE.#ctor(System.IO.Stream,System.IO.SeekOrigin,System.Int64)">
+            <summary>
+            Creates a new data input stream, using the given underlying stream, seeking it at the given origin, optionally at the given offset (0 by default)
+            </summary>
+        </member>
+        <member name="T:REghZy.Streams.DataOutputStream">
+            <summary>
+            A class for writing primitive objects to a stream
+            <para>
+            The bytes will be written in the big-endianness format, apart from writing pointer values, which will be
+            written in your processor architecture's format, which for modern hardware is little-endianness
+            </para>
+            <para>
+            Most method have repeated code for speed reasons...
+            </para>
+            </summary>
+        </member>
+        <member name="F:REghZy.Streams.DataOutputStream.buffer8">
+            <summary>
+            A small buffer for writing to
+            </summary>
+        </member>
+        <member name="F:REghZy.Streams.DataOutputStream.buffer1">
+            <summary>
+            A smaller buffer for writing to
+            </summary>
+        </member>
+        <member name="T:REghZy.Streams.DataOutputStreamLE">
+            <summary>
+            A class for writing primitive objects to a stream
+            <para>
+            The bytes will be written in the big-endianness format, apart from writing pointer values, which will be
+            written in your processor architecture's format, which for modern hardware is little-endianness
+            </para>
+            <para>
+            Most method have repeated code for speed reasons...
+            </para>
+            </summary>
+        </member>
+        <member name="F:REghZy.Streams.DataOutputStreamLE.buffer8">
+            <summary>
+            A small buffer for writing to
+            </summary>
+        </member>
+        <member name="F:REghZy.Streams.DataOutputStreamLE.buffer1">
+            <summary>
+            A smaller buffer for writing to
+            </summary>
+        </member>
+        <member name="T:REghZy.Streams.DataStream">
+            <summary>
+            A base data stream for sending and receiving data
+            </summary>
+        </member>
+        <member name="P:REghZy.Streams.DataStream.Stream">
+            <summary>
+            The actual stream that this connection uses
+            </summary>
+        </member>
+        <member name="P:REghZy.Streams.DataStream.Input">
+            <summary>
+            The data input stream (for reading)
+            </summary>
+        </member>
+        <member name="P:REghZy.Streams.DataStream.Output">
+            <summary>
+            The data output stream (for writing)
+            </summary>
+        </member>
+        <member name="P:REghZy.Streams.DataStream.BytesAvailable">
+            <summary>
+            Gets the number of bytes that can be read without blocking
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.DataStream.#ctor">
+            <summary>
+            Creates a new data stream, leaving the stream and data inputs/outputs as null
+            </summary>
+            <param name="stream">The stream to use</param>
+            <exception cref="T:System.NullReferenceException">The stream is null</exception>
+        </member>
+        <member name="M:REghZy.Streams.DataStream.#ctor(System.IO.Stream)">
+            <summary>
+            Creates a new data stream. A data input stream and data output stream will be created automatically
+            </summary>
+            <param name="stream">The stream to use</param>
+            <exception cref="T:System.NullReferenceException">The stream is null</exception>
+        </member>
+        <member name="M:REghZy.Streams.DataStream.#ctor(System.IO.Stream,REghZy.Streams.IDataInput,REghZy.Streams.IDataOutput)">
+            <summary>
+            Creates a new data stream, using the given stream, data input and data output
+            </summary>
+            <param name="stream">The stream to use</param>
+            <param name="input">The data input to use for reading</param>
+            <param name="output">The data output to use for writing</param>
+            <exception cref="T:System.NullReferenceException">The stream, input or output is null</exception>
+        </member>
+        <member name="M:REghZy.Streams.DataStream.CanRead">
+            <summary>
+            Whether there are any bytes in the input stream
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:REghZy.Streams.DataStream.Flush">
+            <summary>
+            Flushes the write buffer
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.DataStream.Dispose">
+            <summary>
+            Disposes the internal stream
+            </summary>
+        </member>
+        <member name="T:REghZy.Streams.IDataInput">
+            <summary>
+            An interface for reading data from a stream
+            </summary>
+        </member>
+        <member name="P:REghZy.Streams.IDataInput.Stream">
+            <summary>
+            The base stream that this data input will read from
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.Close">
+            <summary>
+            Closes the stream
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads the given number of bytes from the stream
+            </summary>
+            <param name="dest">The buffer to read into</param>
+            <param name="offset">The offset in the buffer</param>
+            <param name="count">The number of bytes to read</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadFully(System.Byte[])">
+            <summary>
+            Reads the exact number of bytes (specified by the given buffer's size) into the buffer (starting at 0)
+            <para>
+            Invoking this is the exact same as invoking <see cref="M:REghZy.Streams.IDataInput.ReadFully(System.Byte[],System.Int32,System.Int32)"/>,
+            where the offset is 0 and the length is the given buffer's length
+            </para>
+            </summary>
+            <param name="dest">The buffer to put the bytes into</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadFully(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads the exact given number of bytes into the given buffer (starting at the given offset)
+            <para>
+            The size of the buffer WILL NOT be checked, so it will throw an out of bounds exception if you mess up
+            </para>
+            </summary>
+            <param name="dest">The buffer to put bytes into</param>
+            <param name="offset">The index specifying where to start writing into the buffer (inclusive)</param>
+            <param name="length">The number of bytes to read (e.g 4 for an integer, 2 for a short, etc)</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadBytes(System.Int32)">
+            <summary>
+            Reads the given number of bytes. This is similar to invoking <see cref="M:REghZy.Streams.IDataInput.ReadFully(System.Byte[])"/>
+            </summary>
+            <param name="length">The number of characters to read</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadBytesLabelled">
+            <summary>
+            Reads a short (2 byte) values representing the number of bytes to read, and then reads that many characters
+            <para>
+            The total number of bytes is equal to 2 + length
+            </para>
+            </summary>
+            <param name="length">The number of characters to read</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadBool">
+            <summary>
+            Reads 1 byte and return true if its value is 1, otherwise false
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadSByte">
+            <summary>
+            Reads 1 signed <see cref="T:System.SByte"/> (1 sign bit + 7 value bits)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadByte">
+            <summary>
+            Reads 1 unsigned <see cref="T:System.Byte"/> (8 value bits)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadShort">
+            <summary>
+            Reads 2 bytes and joins them into a <see cref="T:System.Int16"/> value (1 sign bit + 15 value bits)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadUShort">
+            <summary>
+            Reads 2 bytes and joins them into a <see cref="T:System.UInt16"/> value (16 value bits)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadInt">
+            <summary>
+            Reads 4 bytes and joins them into an <see cref="T:System.Int32"/> value (1 sign bit + 31 value bits)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadUInt">
+            <summary>
+            Reads 4 bytes and joins them into a <see cref="T:System.UInt32"/> value (16 value bits)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadLong">
+            <summary>
+            Reads 8 bytes and joins them into a <see cref="T:System.Int64"/> value (1 sign bit + 63 value bits)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadULong">
+            <summary>
+            Reads 8 bytes and joins them into a <see cref="T:System.UInt64"/> value (64 value bits)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadFloat">
+            <summary>
+            Reads 4 bytes, joins them into a <see cref="T:System.UInt32"/> value, and uses unsafe code to cast it to a <see cref="T:System.Single"/>
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadDouble">
+            <summary>
+            Reads 8 bytes, joins them into a <see cref="T:System.UInt64"/> value, and uses unsafe code to cast it to a <see cref="T:System.Double"/>
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadEnum08``1">
+            <summary>
+            Reads 1 byte and converts it to an enum. This requires that the enum type's size is equal to the
+            size of a byte, otherwise you may lose the extra data (e.g if the enum's value is above 255),
+            resulting in undefined behaviour
+            </summary>
+            <typeparam name="T">The enum type</typeparam>
+            <returns>The enum itself</returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadEnum16``1">
+            <summary>
+            Reads 2 bytes and converts it to an enum. This requires that the enum type's size is smaller than or equal to the
+            size of a short/ushort, otherwise you may lose the extra data, resulting in undefined behaviour
+            </summary>
+            <typeparam name="T">The enum type</typeparam>
+            <returns>The enum itself</returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadEnum32``1">
+            <summary>
+            Reads 4 bytes and converts it to an enum. This requires that the enum type's size is smaller than or equal to the
+            size of a int/uint, otherwise you may lose the extra data, resulting in undefined behaviour
+            </summary>
+            <typeparam name="T">The enum type</typeparam>
+            <returns>The enum itself</returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadEnum64``1">
+            <summary>
+            Reads 8 bytes and converts it to an enum. This requires that the enum type's size is smaller than or equal to the
+            size of a long/ulong, otherwise you may lose the extra data, resulting in undefined behaviour
+            </summary>
+            <typeparam name="T">The enum type</typeparam>
+            <returns>The enum itself</returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadCharUTF16">
+            <summary>
+            Reads 2 bytes, joins them into a <see cref="T:System.UInt16"/> value, and casts it to a <see cref="T:System.Char"/>
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadCharUTF8">
+            <summary>
+            Reads 1 byte (low byte), and casts it to a <see cref="T:System.Char"/>
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadChar(System.Text.Encoding)">
+            <summary>
+            Reads a character using the given encoding
+            </summary>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadCharsUTF16(System.Int32)">
+            <summary>
+            Reads the given number of characters into a character array. This reads UTF16 chars, so
+            each character is 2 bytes, meaning, reading 10 chars will read 20 bytes
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadCharsUTF8(System.Int32)">
+            <summary>
+            Reads the given number of characters into a character array. This reads UTF8 chars, so
+            each character is 1 bytes, meaning, reading 10 chars will read 10 bytes
+            </summary>
+            <param name="length">The number of chars (and therefore bytes) to read</param>
+            <returns>
+            An array with the exact same size of the given length
+            </returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadCharsUTF16Labelled">
+            <summary>
+            Reads a short (2 byte) values representing the number of chars to read, and then reads that many characters
+            <para>
+            The total number of bytes is equal to 2 + (length * 2), because UTF16 uses 2 bytes per char
+            </para>
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadCharsUTF8Labelled">
+            <summary>
+            Reads a short (2 byte) values representing the number of chars to read, and then reads that many characters
+            <para>
+            The total number of bytes is equal to 2 + length, because UTF8 uses 1 byte per char
+            </para>
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadChars(System.Text.Encoding)">
+            <summary>
+            Reads an array of characters using the given encoding
+            <para>
+            Supplying a length parameter is not required as it is always sent
+            </para>
+            </summary>
+            <param name="encoding">The encoding used to decode the bytes</param>
+            <returns></returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadStringUTF16(System.Int32)">
+            <summary>
+            Reads the given number of characters, and joins them into a string
+            <para>
+            Invoking this is the exact same as invoking <see cref="M:REghZy.Streams.IDataInput.ReadCharsUTF16(System.Int32)"/>, only passing the char array into the string's constructor
+            </para>
+            </summary>
+            <param name="length">The number of characters to read</param>
+            <returns></returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadStringUTF8(System.Int32)">
+            <summary>
+            Reads the given number of characters, and joins them into a string
+            <para>
+            Invoking this is the exact same as invoking <see cref="M:REghZy.Streams.IDataInput.ReadCharsUTF16(System.Int32)"/>, only passing the char array into the string's constructor
+            </para>
+            </summary>
+            <param name="length">The number of characters to read</param>
+            <returns></returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadStringUTF16Labelled">
+            <summary>
+            Reads a short (2 byte) values representing the number of chars to read, and then reads that many characters into a string
+            <para>
+            This is the exact same as <see cref="M:REghZy.Streams.IDataInput.ReadCharsUTF16Labelled"/>, but it crates a string for convenience
+            </para>
+            <para>
+            The total number of bytes is equal to 2 + (length * 2), because UTF16 uses 2 bytes per char
+            </para>
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadStringUTF8Labelled">
+            <summary>
+            Reads a short (2 byte) values representing the number of chars to read, and then reads that many characters into a string
+            <para>
+            This is the exact same as <see cref="M:REghZy.Streams.IDataInput.ReadCharsUTF8Labelled"/>, but it crates a string for convenience
+            </para>
+            <para>
+            The total number of bytes is equal to 2 + length, because UTF8 uses 1 byte per char
+            </para>
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadString(System.Text.Encoding)">
+            <summary>
+            Reads a string with the given encoding. Providing the string's length is not required, because the length is always sent
+            </summary>
+            <param name="length">The number of characters to read</param>
+            <returns></returns>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadPtr(System.Byte*,System.Int32,System.Int32)">
+            <summary>
+            Reads 'length' number of bytes into the given pointer buffer (starting at the given offset index)
+            <para>
+            The data read will be in your processor architecture's endianness, which for modern hardware is little-endianness.
+            However, most of the functions in this library read in big-endianness (e.g <see cref="M:REghZy.Streams.IDataInput.ReadUInt"/>)
+            </para>
+            </summary>
+            <param name="dest">The buffer to write bytes into</param>
+            <param name="offset">The index of where to start writing into the pointer (inclusive)</param>
+            <param name="length">The give number of bytes to read</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadPtr(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            Reads 'length' number of bytes into the given pointer (starting at the given offset index)
+            <para>
+            The data read will be in your processor architecture's endianness, which for modern hardware is little-endianness.
+            However, most of the functions in this library read in big-endianness (e.g <see cref="M:REghZy.Streams.IDataInput.ReadUInt"/>)
+            </para>
+            </summary>
+            <param name="dest">The pointer which should point to a buffer, which is where bytes will be written to</param>
+            <param name="offset">The index of where to start writing into the pointer/buffer (inclusive)</param>
+            <param name="length">The give number of bytes to read</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadPrimitive``1">
+            <summary>
+            Reads a verified unmanaged type, where the given number of bytes will be read as the given type
+            <para>
+            The number of bytes will be equivalent to the size of the generic unmanaged type passed to the method.
+            E.g, reading an integer (Int32) will read 4 bytes
+            </para>
+            <para>
+            The data read will be in your processor architecture's endianness, which for modern hardware is little-endianness.
+            However, most of the functions in this library read in big-endianness (e.g <see cref="M:REghZy.Streams.IDataInput.ReadUInt"/>)
+            </para>
+            </summary>
+            <typeparam name="T">The unmanaged type</typeparam>
+        </member>
+        <member name="M:REghZy.Streams.IDataInput.ReadPrimitive``1(``0)">
+            <summary>
+            Reads a verified unmanaged type, where the given number of bytes will be read into the given value instance
+            <para>
+            The number of bytes will be equivalent to the size of the generic unmanaged type passed to the method.
+            E.g, reading an integer (Int32) will read 4 bytes
+            </para>
+            <para>
+            The data read will be in your processor architecture's endianness, which for modern hardware is little-endianness.
+            However, most of the functions in this library read in big-endianness (e.g <see cref="M:REghZy.Streams.IDataInput.ReadUInt"/>)
+            </para>
+            </summary>
+            <typeparam name="T">The unmanaged type</typeparam>
+        </member>
+        <member name="T:REghZy.Streams.IDataOutput">
+            <summary>
+            An interface for writing data to a stream
+            </summary>
+        </member>
+        <member name="P:REghZy.Streams.IDataOutput.Stream">
+            <summary>
+            The base stream that this data output will write to
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.Flush">
+            <summary>
+            Flushes the data to the stream
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.Close">
+            <summary>
+            Closes the stream
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Writes the given number of bytes, starting at the given offset, from the given buffer
+            </summary>
+            <param name="src">The buffer to write data from</param>
+            <param name="offset">The index to start reading from the buffer</param>
+            <param name="count">The number of bytes to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.Write(System.Byte[],System.Int32)">
+            <summary>
+            Writes the bytes in the given buffer, starting at the given offset
+            <para>
+            The number of bytes written will be: <code>src.Length - offset</code>
+            </para>
+            </summary>
+            <param name="src">The buffer to write data from</param>
+            <param name="offset">The index to start reading from the buffer</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteLabelled(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Writes a ushort value representing the given count of bytes,
+            and then writes the bytes in the given buffer, starting at the given offset
+            </summary>
+            <param name="src">The buffer to write data from</param>
+            <param name="offset">The index to start reading from the buffer</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteLabelled(System.Byte[],System.Int32)">
+            <summary>
+            Writes a ushort value representing the given array length,
+            and then writes the bytes in the given buffer, starting at the given offset
+            <para>
+            The number of bytes written will be: <code>src.Length - offset</code>
+            </para>
+            </summary>
+            <param name="src">The buffer to write data from</param>
+            <param name="offset">The index to start reading from the buffer</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteBoolean(System.Boolean)">
+            <summary>
+            Writes a boolean value (1 byte)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteSByte(System.SByte)">
+            <summary>
+            Writes a single signed byte (-128 to 127)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteByte(System.Byte)">
+            <summary>
+            Writes a single unsigned byte (0-255)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteShort(System.Int16)">
+            <summary>
+            Writes a signed short (2 bytes) (-32768 to 32767)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteUShort(System.UInt16)">
+            <summary>
+            Writes a short (2 bytes) (0 to 65535)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteInt(System.Int32)">
+            <summary>
+            Writes an integer (4 bytes) (-2,147,483,648 to 2,147,483,647)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteUInt(System.UInt32)">
+            <summary>
+            Writes an unsigned integer (4 bytes) (0 to 4,294,967,295)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteLong(System.Int64)">
+            <summary>
+            Writes a signed long (8 bytes) (-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteULong(System.UInt64)">
+            <summary>
+            Writes an unsigned long (8 bytes) (0 to 18,446,744,073,709,551,615)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteFloat(System.Single)">
+            <summary>
+            Writes a floating point number (4 bytes)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteDouble(System.Double)">
+            <summary>
+            Writes a double percision floating point number (8 bytes)
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteEnum08``1(``0)">
+            <summary>
+            Writes an enum value as a byte
+            </summary>
+            <typeparam name="TEnum">The enum type whose size is 1 byte big</typeparam>
+            <param name="value">The value to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteEnum16``1(``0)">
+            <summary>
+            Writes an enum value as a ushort (2 bytes)
+            </summary>
+            <typeparam name="TEnum">The enum type whose size is atleast 2 bytes big</typeparam>
+            <param name="value">The value to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteEnum32``1(``0)">
+            <summary>
+            Writes an enum value as a uint (4 bytes)
+            </summary>
+            <typeparam name="TEnum">The enum type whose size is atleast 4 bytes big</typeparam>
+            <param name="value">The value to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteEnum64``1(``0)">
+            <summary>
+            Writes an enum value as a ulong value (8 bytes)
+            </summary>
+            <typeparam name="TEnum">The enum type whose size is at least 8 bytes big</typeparam>
+            <param name="value">The value to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteCharUTF16(System.Char)">
+            <summary>
+            Writes a UTF16 char (2 bytes)
+            </summary>
+            <param name="value">The value to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteCharUTF8(System.Char)">
+            <summary>
+            Writes a UTF8 char (1 byte)
+            </summary>
+            <param name="value">The value to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteChar(System.Char,System.Text.Encoding)">
+            <summary>
+            Writes a character using the given encoding
+            </summary>
+            <param name="value">The value to write</param>
+            <param name="encoding">The encoding that will be used to get the bytes of the char</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteStringUTF16(System.String)">
+            <summary>
+            Writes all of the chars in the given string
+            </summary>
+            <param name="value">The string to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteStringUTF8(System.String)">
+            <summary>
+            Writes all of the chars in the given string
+            </summary>
+            <param name="value">The string to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteString(System.String,System.Text.Encoding)">
+            <summary>
+            Writes the given string using the given encoding
+            </summary>
+            <param name="value">The value to write</param>
+            <param name="encoding">The encoding that will be used to get the bytes of the string</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteCharsUTF16(System.Char[])">
+            <summary>
+            Writes all of the chars in the given string. This writes 2 bytes per char
+            </summary>
+            <param name="chars">The chars to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteCharsUTF8(System.Char[])">
+            <summary>
+            Writes all of the chars in the given string. This only writes the low byte of
+            the char (bit 1-8), and does not send the high byte. Meaning, only 1 byte per char; value range from 0 to 255
+            </summary>
+            <param name="chars">The chars to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteChars(System.Char[],System.Text.Encoding)">
+            <summary>
+            Writes all of the chars in the given char array, using the given encoding
+            </summary>
+            <param name="chars">The chars to write</param>
+            <param name="encoding">The encoding that will be used to get the bytes of the string</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteCharsLabelledUTF16(System.Char[])">
+            <summary>
+            Writes the size of the given array as a ushort value (2 bytes), and then writes
+            all of the chars in the given array in UTF16 (2 byte per char)
+            </summary>
+            <param name="chars">The chars to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteCharsLabelledUTF8(System.Char[])">
+            <summary>
+            Writes the size of the given array as a ushort value (2 bytes), and then writes
+            all of the chars in the given array in UTF8 (1 byte per char)
+            </summary>
+            <param name="chars">The chars to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteStringLabelledUTF16(System.String)">
+            <summary>
+            Writes the length of the string as a ushort value (2 bytes),
+            and then writes the string in UTF16 (2 bytes per char)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteStringLabelledUTF8(System.String)">
+            <summary>
+            Writes the length of the string as a ushort value (2 bytes),
+            and then writes the string in UTF8 (1 bytes per char)
+            </summary>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteCharPtrUTF16(System.Char*,System.Int32)">
+            <summary>
+            Writes '2 * length' bytes from the given pointer (starting, in the pointer, at the given offset)
+            </summary>
+            <param name="src">The pointer to get the chars from</param>
+            <param name="count">The number of characters to write (not bytes, characters)</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteCharPtrUTF8(System.Char*,System.Int32)">
+            <summary>
+            Writes 'length' bytes from the given pointer (starting, in the pointer, at the given offset)
+            </summary>
+            <param name="src">The pointer to get the chars from</param>
+            <param name="count">The number of characters/bytes to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WriteCharPtr(System.Char*,System.Int32,System.Text.Encoding)">
+            <summary>
+            Writes 'count' of chars from the given pointer, starting at the given offset, using the given encoding
+            </summary>
+            <param name="src">The pointer to get the chars from</param>
+            <param name="offset">The offset within the pointer (usually this starts at 0)</param>
+            <param name="count">The number of characters/bytes to write</param>
+            <param name="encoding">The encoding used to get the bytes</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WritePtr(System.Byte*,System.Int32)">
+            <summary>
+            Writes 'length' bytes from the given pointer (starting, in the pointer, at the given offset)
+            <para>
+            The data written will be in your processor architecture's endianness, which for modern hardware is little-endianness.
+            However, most of the functions in this library write in big-endianness (e.g <see cref="M:REghZy.Streams.IDataOutput.WriteUInt(System.UInt32)"/>)
+            </para>
+            </summary>
+            <param name="src">The pointer to a buffer of characters</param>
+            <param name="offset">The offset within the pointer (usually this starts at 0)</param>
+            <param name="count">The number of characters/bytes to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WritePtr(System.IntPtr,System.Int32)">
+            <summary>
+            Writes 'length' bytes from the given pointer (starting, in the pointer, at the given offset)
+            <para>
+            The data written will be in your processor architecture's endianness, which for modern hardware is little-endianness.
+            However, most of the functions in this library write in big-endianness (e.g <see cref="M:REghZy.Streams.IDataOutput.WriteUInt(System.UInt32)"/>)
+            </para>
+            </summary>
+            <param name="src">The pointer to a buffer of characters</param>
+            <param name="offset">The offset within the pointer (usually this starts at 0)</param>
+            <param name="count">The number of characters/bytes to write</param>
+        </member>
+        <member name="M:REghZy.Streams.IDataOutput.WritePrimitive``1(``0)">
+            <summary>
+            Writes a blittable value/object, where all of the value's bytes will be written
+            <para>
+            The data written will be in your processor architecture's endianness, which for modern hardware is little-endianness.
+            However, most of the functions in this library write in big-endianness (e.g <see cref="M:REghZy.Streams.IDataOutput.WriteUInt(System.UInt32)"/>)
+            </para>
+            </summary>
+            <param name="value">The value to write</param>
+            <typeparam name="T">The blittable type</typeparam>
+        </member>
+        <member name="T:REghZy.Streams.Utils.EnumConversion`1">
+            <summary>
+            A class for converting between enum and primitives (int/short/etc)
+            </summary>
+            <typeparam name="TEnum">The enum type</typeparam>
+        </member>
+    </members>
+</doc>
